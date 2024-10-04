@@ -61,8 +61,11 @@ def main():
               
             ##  The geometric design parameters and the corresponding station numbers for the operating speed calculation need to be read from graphs.
        
+            R_H =  1 / batch_graphs.x[2][0].item()
+            G_V =  batch_graphs.x[4][0].item()
             L_knwl = compute_knowledge_enhanced_loss(predicted_features, 
-                                          R_H=1000.0, 
+                                          R_H, 
+                                          G_V,
                                           f_max=0.5, 
                                           e_s=2.0, 
                                           b=2.0, 
@@ -73,7 +76,7 @@ def main():
                                           V_e=40.0, 
                                           V_dc_a_vn=1.0, 
                                           kk=0.01, 
-                                          device=device)            
+                                          device=device)         
 
             total_loss = loss_data + L_knwl
 
